@@ -11,6 +11,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/Ionicons";
 
 // Data wisata
 const carouselData = [
@@ -46,7 +47,19 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
+      {/* Header Navigasi */}
+      <View style={styles.topNav}>
+        <TouchableOpacity onPress={() => navigation.navigate("Favorit")} style={styles.iconButton}>
+          <Icon name="heart-outline" size={24} color="#333" />
+          <Text style={styles.iconLabel}>Favorit</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")} style={styles.iconButton}>
+          <Icon name="person-circle-outline" size={24} color="#333" />
+          <Text style={styles.iconLabel}>Profil</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Search dan Judul */}
       <View style={styles.searchBar}>
         <TextInput placeholder="Cari wisata..." style={styles.input} />
         <Text style={styles.title}>Wisataku Malang</Text>
@@ -111,23 +124,109 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 10, backgroundColor: "#fff" },
-  searchBar: { flexDirection: "row", alignItems: "center", padding: 10, backgroundColor: "#ddd", borderRadius: 10 },
-  input: { flex: 1, padding: 10, backgroundColor: "#fff", borderRadius: 5 },
-  title: { marginLeft: 10, fontSize: 16, fontWeight: "bold", color: "#333" },
+  topNav: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  iconButton: {
+    alignItems: "center",
+    marginLeft: 20,
+  },
+  iconLabel: {
+    fontSize: 12,
+    color: "#333",
+    marginTop: 2,
+  },
+  searchBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#ddd",
+    borderRadius: 10,
+  },
+  input: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: "#fff",
+    borderRadius: 5,
+  },
+  title: {
+    marginLeft: 10,
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
+  },
   listCategory: { flexDirection: "row", marginBottom: -5, paddingHorizontal: 8 },
-  categoryItem: { paddingVertical: 4, paddingHorizontal: 12, borderRadius: 15, backgroundColor: "#f5f5f5", marginRight: 6 },
-  categorySelected: { backgroundColor: "#5078F2" },
-  categoryText: { fontSize: 12, color: "#7D7D7D", fontWeight: "500" },
-  categoryTextSelected: { color: "#fff", fontWeight: "bold" },
-  carousel: { flexDirection: "row", marginBottom: 10 },
-  carouselItem: { position: "relative", marginRight: 10 },
-  carouselImage: { width: 300, height: 150, borderRadius: 10 },
-  textOverlay: { position: "absolute", bottom: 0, width: "100%", backgroundColor: "rgba(0, 0, 0, 0.5)", padding: 5 },
-  imageTitle: { color: "#fff", fontSize: 14, fontWeight: "bold" },
-  recommendationTitle: { fontSize: 18, fontWeight: "bold", marginBottom: 10 },
-  recommendationItem: { flexDirection: "row", alignItems: "center", backgroundColor: "#f1f1f1", padding: 10, borderRadius: 10, marginBottom: 10 },
-  recommendationImage: { width: 60, height: 60, borderRadius: 10, marginRight: 10 },
-  recommendationText: { fontSize: 16, fontWeight: "bold", flexShrink: 1 },
+  categoryItem: {
+    paddingVertical: 4,
+    paddingHorizontal: 12,
+    borderRadius: 15,
+    backgroundColor: "#f5f5f5",
+    marginRight: 6,
+  },
+  categorySelected: {
+    backgroundColor: "#5078F2",
+  },
+  categoryText: {
+    fontSize: 12,
+    color: "#7D7D7D",
+    fontWeight: "500",
+  },
+  categoryTextSelected: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  carousel: {
+    flexDirection: "row",
+    marginBottom: 10,
+  },
+  carouselItem: {
+    position: "relative",
+    marginRight: 10,
+  },
+  carouselImage: {
+    width: 300,
+    height: 150,
+    borderRadius: 10,
+  },
+  textOverlay: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    padding: 5,
+  },
+  imageTitle: {
+    color: "#fff",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  recommendationTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  recommendationItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f1f1f1",
+    padding: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  recommendationImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  recommendationText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    flexShrink: 1,
+  },
 });
 
 export default HomeScreen;
