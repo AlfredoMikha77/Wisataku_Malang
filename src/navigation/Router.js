@@ -6,7 +6,8 @@ import HomeScreen from '../screens/Home';
 import DetailScreen from '../screens/Detail';
 import FavoritScreen from '../screens/Favorit';
 import ProfileScreen from '../screens/Profile';
-import ExplorePage from '../screens/ExplorePage'; // Ganti import ke ExplorePage.jsx
+import ExplorePage from '../screens/ExplorePage';
+import AddWisataScreen from '../screens/AddWisata'; // Import AddWisata
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
@@ -25,8 +26,8 @@ const MainTab = () => {
         }}
       />
       <Tab.Screen
-        name="Explore" // Tab baru ganti Form
-        component={ExplorePage} // Gunakan ExplorePage
+        name="Explore"
+        component={ExplorePage}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="compass-outline" color={color} size={size} />
@@ -61,6 +62,11 @@ const Router = () => {
       <Stack.Navigator screenOptions={{ headerShown: true }}>
         <Stack.Screen name="Main" component={MainTab} options={{ headerShown: false }} />
         <Stack.Screen name="Detail" component={DetailScreen} />
+        <Stack.Screen 
+          name="AddWisata" 
+          component={AddWisataScreen} 
+          options={{ title: 'Tambah Wisata Baru' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
