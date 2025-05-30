@@ -1,15 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-  ActivityIndicator,
-  TextInput,
-  Alert,
+  View,Text, Image,StyleSheet, TouchableOpacity,ScrollView, FlatList, ActivityIndicator,TextInput,Alert,
 } from 'react-native';
 import {
   SearchNormal,
@@ -45,7 +36,7 @@ const ProfileScreen = () => {
   });
 
   const [userData, setUserData] = useState({
-    name: 'Alfred',
+    name: 'Alfredo Mikha',
     email: 'Alfred07@gmail.com',
     city: 'Malang',
     interest: 'Wisata Alam',
@@ -125,7 +116,7 @@ const ProfileScreen = () => {
       const {url} = await response.json();
       return url;
     } catch (error) {
-      console.error('🔥 Upload error:', error);
+      console.error('Upload error:', error);
       Alert.alert('Upload Error', 'Gagal upload gambar');
       return '';
     }
@@ -187,7 +178,7 @@ const ProfileScreen = () => {
       setPostForm({title: '', image: '', description: ''});
       setImage('');
     } catch (error) {
-      console.error('🔥 Error saving post:', error);
+      console.error('Error saving post:', error);
       Alert.alert('Error', 'Gagal menyimpan postingan.');
     } finally {
       setLoading(false);
