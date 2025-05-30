@@ -1,6 +1,6 @@
 import Home from "./Home";
 import Detail from "./Detail";
-import Favorit from "./Favorit";
+import Favorite from "./favorite";
 import Profile from "./Profile";
 
-export { Home, Detail, Favorit, Profile };
+export { Home, Detail, Favorite, Profile };

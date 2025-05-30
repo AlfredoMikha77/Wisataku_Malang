@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "504424609691",
+    "project_id": "wisatakumalang",
+    "storage_bucket": "wisatakumalang.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504424609691:android:743ed0328975a0b974d33e",
+        "android_client_info": {
+          "package_name": "com.wisataku_malang"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsdt1dHPwBuwTSttzHmTh08jS52HPF_P4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

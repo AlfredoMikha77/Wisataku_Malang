@@ -26,6 +26,7 @@ const colors = {
   grey: '#8E8E93',
   lightGrey: '#F5F5F5',
   darkGrey: '#333',
+  red: '#FF3B30',
 };
 
 const fontFamily = {
@@ -83,6 +84,7 @@ const HomeScreen = () => {
   const navigation = useNavigation();
   const [selectedCategory, setSelectedCategory] = useState("Semua");
   const [searchQuery, setSearchQuery] = useState("");
+  const [favorites, setFavorites] = useState({}); // Object untuk menyimpan status favorite
   
   // Animasi fade-in untuk carousel
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -106,6 +108,14 @@ const HomeScreen = () => {
       useNativeDriver: true,
     }).start();
   }, []);
+
+  // Fungsi untuk toggle favorite
+  const toggleFavorite = (itemId) => {
+    setFavorites(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
 
   // Fungsi untuk animasi scale kategori
   const handleCategoryPress = (categoryName, index) => {
@@ -211,6 +221,18 @@ const HomeScreen = () => {
             >
               <Animated.View style={[styles.carouselItem, { opacity: fadeAnim }]}>
                 <Image source={{ uri: item.image }} style={styles.carouselImage} />
+                {/* Tombol Love di pojok kanan atas */}
+                <TouchableOpacity 
+                  style={styles.loveButton}
+                  onPress={() => toggleFavorite(item.id)}
+                  activeOpacity={0.7}
+                >
+                  <Icon 
+                    name={favorites[item.id] ? "heart" : "heart-outline"} 
+                    size={24} 
+                    color={favorites[item.id] ? colors.red : colors.white}
+                  />
+                </TouchableOpacity>
                 <View style={styles.carouselTextContainer}>
                   <Text style={styles.carouselTitle}>{item.title}</Text>
                   <View style={styles.ratingContainer}>
@@ -237,6 +259,18 @@ const HomeScreen = () => {
             >
               <View style={styles.recommendationItem}>
                 <Image source={{ uri: item.image }} style={styles.recommendationImage} />
+                {/* Tombol Love untuk recommendation item */}
+                <TouchableOpacity 
+                  style={styles.loveButtonRecommendation}
+                  onPress={() => toggleFavorite(item.id)}
+                  activeOpacity={0.7}
+                >
+                  <Icon 
+                    name={favorites[item.id] ? "heart" : "heart-outline"} 
+                    size={20} 
+                    color={favorites[item.id] ? colors.red : colors.grey}
+                  />
+                </TouchableOpacity>
                 <View style={styles.recommendationTextContainer}>
                   <Text style={styles.recommendationTitle}>{item.title}</Text>
                   <Text style={styles.recommendationCategory}>{item.category}</Text>
@@ -353,10 +387,34 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: colors.lightGrey,
     elevation: 2,
+    position: 'relative',
   },
   carouselImage: {
     width: '100%',
     height: 160,
+  },
+  loveButton: {
+    position: 'absolute',
+    top: 12,
+    right: 12,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderRadius: 20,
+    padding: 8,
+    zIndex: 1,
+  },
+  loveButtonRecommendation: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: colors.white,
+    borderRadius: 15,
+    padding: 6,
+    elevation: 2,
+    shadowColor: colors.black,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    zIndex: 1,
   },
   carouselTextContainer: {
     padding: 12,
@@ -389,6 +447,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 2,
+    position: 'relative',
   },
   recommendationImage: {
     width: 100,

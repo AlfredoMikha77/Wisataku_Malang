@@ -2,12 +2,14 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+
 import HomeScreen from '../screens/Home';
 import DetailScreen from '../screens/Detail';
-import FavoritScreen from '../screens/Favorit';
+import FavoritScreen from '../screens/favorite';
 import ProfileScreen from '../screens/Profile';
-import ExplorePage from '../screens/ExplorePage';
-import AddWisataScreen from '../screens/AddWisata'; // Import AddWisata
+import ExplorePage from '../screens/Discover'; // ✅ sesuai folder Discover/
+import EditProfilScreen from '../screens/editprofile';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
@@ -60,13 +62,21 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: true }}>
-        <Stack.Screen name="Main" component={MainTab} options={{ headerShown: false }} />
-        <Stack.Screen name="Detail" component={DetailScreen} />
-        <Stack.Screen 
-          name="AddWisata" 
-          component={AddWisataScreen} 
-          options={{ title: 'Tambah Wisata Baru' }}
+        <Stack.Screen
+          name="Main"
+          component={MainTab}
+          options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Detail"
+          component={DetailScreen}
+        />
+        <Stack.Screen
+          name="EditProfil"
+          component={EditProfilScreen}
+          options={{ title: 'Edit Profil' }}
+        />
+        {/* Hapus AddWisata karena tidak ada */}
       </Stack.Navigator>
     </NavigationContainer>
   );
